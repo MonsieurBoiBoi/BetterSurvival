@@ -1,0 +1,16 @@
+name: bettersurvival
+main: com.bettersurvival.bettersurvival.Plugin
+version: 0.9.0
+api-version: 1.19
+author: MonsieurBoiBoi
+commands:
+  rain:
+    description: Commande pour passez la pluie avec un vote !
+  settings:
+    description: Modifiez les parametres du plugin !
+  night:
+    description: Commande pour passez la nuit !
+  death:
+    description: Affiche les coordonné de votre mort.
+  suicide:
+    description: Pour se suicidez.

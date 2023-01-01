@@ -1,0 +1,21 @@
+# Plugin version: 1.0.0
+# This is the main configuration file for the plugin
+# This file is used to configure the plugin
+
+# Number of player need to pass the vote
+Vote:
+  Rain:
+    value: 4
+  Night:
+    value: 1
+
+WelcomeMessage: "Yo man!" # The welcome message that will be displayed when the player joins the server in the actionbar 
+
+Tab:
+  Header: "§2La Bienveillance avant tout !§r" # The header of the tablist 
+  Footer: "§2La Bienveillance avant tout !§r" # The footer of the tablist
+
+JoinMessage: "§a a rejoint la partie."
+LeftMessage: "§c a quitté la partie."
+
+NoGamemode: True # If true, the player will not be able to change his gamemode so put false if you want to allow the player to change his gamemode (default: true)
