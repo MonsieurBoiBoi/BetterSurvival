@@ -11,4 +11,5 @@ Minecraft plugin to improve survival experience in multiplayer
 - /rain - Vote to skip the rain
 - /night - Vote to skip the night
 - /suicide - To kill yourself
-- /death - To see where you dead 
+- /death - To see where you dead
+- /settings - To change settings but other settings are in config.yml
