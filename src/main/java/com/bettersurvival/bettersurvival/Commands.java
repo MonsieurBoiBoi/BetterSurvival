@@ -94,18 +94,17 @@ public class Commands implements org.bukkit.command.CommandExecutor{
         }
     }
     //END NUIT------------------------------------------------------------------------------------------------------
-    //START MORT------------------------------------------------------------------------------------------------------
+    //START DEATH------------------------------------------------------------------------------------------------------
     if(command.getName().equalsIgnoreCase("death")){
-        // use the lastPositions map to get the last position of the player who died who is save in Event.java
-        if (Event.lastPositions.containsKey(player.getUniqueId())) {
-            org.bukkit.Location location = Event.lastPositions.get(player.getUniqueId());
+        if (EventDeath.lastPositions.containsKey(player.getUniqueId())) {
+            org.bukkit.Location location = EventDeath.lastPositions.get(player.getUniqueId());
             player.sendMessage("§c§lVotre dernière mort se trouve en " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ());
         } else {
             player.sendMessage("§c§lVous n'avez jamais été mort.");
         }
         
     }
-    //END MORT------------------------------------------------------------------------------------------------------
+    //END DEATH------------------------------------------------------------------------------------------------------
 
     //START SUICIDE------------------------------------------------------------------------------------------------------
     if(command.getName().equalsIgnoreCase("suicide")){
