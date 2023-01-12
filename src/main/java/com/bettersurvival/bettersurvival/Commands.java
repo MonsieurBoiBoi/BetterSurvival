@@ -1,23 +1,23 @@
 package com.bettersurvival.bettersurvival;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 
 public class Commands implements org.bukkit.command.CommandExecutor {
 
-  double voteCount = 0;
-  boolean voteStart = false;
-  double votePercentage = voteCount / Bukkit.getOnlinePlayers().size();
-
-  private final Plugin plugin;
-
-  public Commands(Plugin plugin) {
-    this.plugin = plugin;
-  }
+    private final Plugin plugin;
+    
+    public Commands(Plugin plugin) {
+        this.plugin = plugin;
+    }
+    double voteCount = 0;
+    boolean voteStart = false;
+    
+    int onlinePlayers = Bukkit.getOnlinePlayers().size();
 
   List<org.bukkit.entity.Player> votesPlayers = new ArrayList<org.bukkit.entity.Player>();
 
+  org.bukkit.event.player.PlayerCommandPreprocessEvent event;
   @Override
   public boolean onCommand(
     org.bukkit.command.CommandSender sender,
@@ -30,36 +30,73 @@ public class Commands implements org.bukkit.command.CommandExecutor {
       //START PLUIE------------------------------------------------------------------------------------------------------
       if (command.getName().equalsIgnoreCase("rain")) {
         if (player.getWorld().hasStorm() == false) {
-          player.sendMessage("[Bettersurvival]§c§lIl ne pleut pas.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true){
+                player.sendMessage("[Bettersurvival]§cIl ne pleut pas.");
+            } else {
+                player.sendMessage("[Bettersurvival]§cIt's not raining.");
+            }
           votesPlayers.clear();
         } else {
           if (votesPlayers.contains(player)) {
-            player.sendMessage(
-              "[Bettersurvival]Vous avez déjà voté pour passer à la prochaine pluie."
-            );
+            if (plugin.getConfig().getString("Language").equals("fr") == true){
+                player.sendMessage("[Bettersurvival]§cVous avez déjà voté pour passer à la prochaine pluie.");
+            } else {
+                player.sendMessage("[Bettersurvival]§cYou have already voted to go to the next rain.");
+            }
           } else {
             votesPlayers.add(player);
             if (voteStart == false) {
               voteStart = true;
-              Bukkit.broadcastMessage(
-                "§a§l" +
-                player.getName() +
-                " a demandé à ce que la pluie cesse. Pour voter, faites /rain"
-              );
+              if (plugin.getConfig().getString("Language").equals("fr") == true)
+                Bukkit.broadcastMessage(
+                  "§a" +
+                  player.getName() +
+                  " a demandé à ce que la pluie cesse. Pour voter, faites /rain"
+                );
+              else {
+                Bukkit.broadcastMessage(
+                  "§a" +
+                  player.getName() +
+                  " asked to stop the rain. To vote, do /rain"
+                );}
               voteCount++;
             }
             if (voteStart == true) {
-              if (voteCount >= plugin.getConfig().getInt("Vote.Rain.value")) {
-                Bukkit.broadcastMessage("§a§lLa pluie a cessé.");
+              if ((voteCount >= plugin.getConfig().getInt("Vote.Rain.value") && plugin.getConfig().getBoolean("Vote.Rain.Percentage.Use") == false)) {
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                  Bukkit.broadcastMessage("§aLa pluie a cessé.");
+                else {
+                  Bukkit.broadcastMessage("§aThe rain has stopped.");
+                }
                 player.getWorld().setStorm(false);
                 player.getWorld().setThundering(false);
                 voteCount = 0;
                 voteStart = false;
                 votesPlayers.clear();
-              } else {
+              } else
+              if ((voteCount > (plugin.getConfig().getInt("Vote.Rain.Percentage.value") * onlinePlayers / 100 ) && plugin.getConfig().getBoolean("Vote.Rain.Percentage.Use") == true)) {
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {Bukkit.broadcastMessage("§aLa pluie a cessé.");}
+                else {
+                  Bukkit.broadcastMessage("§aThe rain has stopped.");
+                }
+                player.getWorld().setStorm(false);
+                player.getWorld().setThundering(false);
+                voteCount = 0;
+                voteStart = false;
+                votesPlayers.clear();
+              }
+              else {
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
                 Bukkit.broadcastMessage(
-                  "§a§l" + player.getName() + "§c§la voté pour passez la pluie."
+                  "§a" + player.getName() + "§c a voté pour passez la pluie."
                 );
+                else {
+                  Bukkit.broadcastMessage(
+                    "§a" + player.getName() + "§c voted to skip the rain."
+                  );
+                }
+                
                 voteCount++;
               }
             }
@@ -71,35 +108,70 @@ public class Commands implements org.bukkit.command.CommandExecutor {
       //START NIGHT------------------------------------------------------------------------------------------------------
       if (command.getName().equalsIgnoreCase("night")) {
         if (player.getWorld().getTime() < 13000) {
-          player.sendMessage("[Bettersurvival]§c§lIl fait pas nuit.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true)
+            player.sendMessage("[Bettersurvival]§cIl fait pas nuit.");
+            else {
+                player.sendMessage("[Bettersurvival]§cIt's not night.");
+            }
           votesPlayers.clear();
         } else {
           if (votesPlayers.contains(player)) {
-            player.sendMessage(
-              "[Bettersurvival]Vous avez déjà voté pour passer à la prochaine nuit."
-            );
+            if (plugin.getConfig().getString("Language").equals("fr") == true)
+            player.sendMessage("[Bettersurvival]§cVous avez déjà voté pour passer à la prochaine nuit.");
+            else {
+                player.sendMessage("[Bettersurvival]§cYou have already voted to go to the next night.");
+            }
           } else {
             votesPlayers.add(player);
             if (voteStart == false) {
               voteStart = true;
-              Bukkit.broadcastMessage(
-                "§a§l" +
-                player.getName() +
-                " a demandé à ce que la nuit cesse. Pour voter, faites /night"
-              );
+              if (plugin.getConfig().getString("Language").equals("fr") == true)
+                Bukkit.broadcastMessage(
+                    "§a" +
+                    player.getName() +
+                    " a demandé à ce que la nuit cesse. Pour voter, faites /night"
+                );
+                else {
+                    Bukkit.broadcastMessage(
+                    "§a" +
+                    player.getName() +
+                    " asked to stop the night. To vote, do /night"
+                    );
+                }
               voteCount++;
             }
             if (voteStart == true) {
-              if (voteCount >= plugin.getConfig().getInt("Vote.Night.value")) {
-                Bukkit.broadcastMessage("§a§lLa nuit a cessé.");
+              if ((voteCount >= plugin.getConfig().getInt("Vote.Night.value") && plugin.getConfig().getBoolean("Vote.Night.Percentage.Use") == false)) {
+                if (plugin.getConfig().getString("Language").equals("fr") == true) {
+                    Bukkit.broadcastMessage("§aLa nuit a cessé.");
+                } else {
+                    Bukkit.broadcastMessage("§aThe night has stopped.");
+                }
                 player.getWorld().setTime(0);
                 voteCount = 0;
                 voteStart = false;
                 votesPlayers.clear();
-              } else {
-                Bukkit.broadcastMessage(
-                  "§a§l" + player.getName() + "§c§la voté pour passez la nuit."
-                );
+              } if ((voteCount > (plugin.getConfig().getInt("Vote.Night.Percentage.value") * onlinePlayers / 100 ) && plugin.getConfig().getBoolean("Vote.Night.Percentage.Use") == true)) {
+                if (plugin.getConfig().getString("Language").equals("fr") == true) {
+                    Bukkit.broadcastMessage("§aLa nuit a cessé.");
+                } else {
+                    Bukkit.broadcastMessage("§aThe night has stopped.");
+                }
+                player.getWorld().setTime(0);
+                voteCount = 0;
+                voteStart = false;
+                votesPlayers.clear();
+              }
+              else {
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {Bukkit.broadcastMessage(
+                  "§a" + player.getName() + "§c a voté pour passez la nuit."
+                );}
+                else {
+                    Bukkit.broadcastMessage(
+                    "§a" + player.getName() + "§c voted to skip the night."
+                    );
+                }
                 voteCount++;
               }
             }
@@ -113,16 +185,31 @@ public class Commands implements org.bukkit.command.CommandExecutor {
           org.bukkit.Location location = EventDeath.lastPositions.get(
             player.getUniqueId()
           );
-          player.sendMessage(
-            "§c§lVotre dernière mort se trouve en " +
-            location.getBlockX() +
-            " " +
-            location.getBlockY() +
-            " " +
-            location.getBlockZ()
-          );
+          if (plugin.getConfig().getString("Language").equals("fr") == true) {
+            player.sendMessage(
+              "§cVotre dernière mort se trouve en X:" +
+              location.getBlockX() +
+              " Y:" +
+              location.getBlockY() +
+              " Z:" +
+              location.getBlockZ()
+            );
+          } else {
+            player.sendMessage(
+              "§cYour last death is at X:" +
+              location.getBlockX() +
+              " Y:" +
+              location.getBlockY() +
+              " Z:" +
+              location.getBlockZ()
+            );
+          }
         } else {
-          player.sendMessage("§c§lVous n'avez jamais été mort.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true) {
+                player.sendMessage("§cVous n'avez jamais été mort.");
+            } else {
+                player.sendMessage("§cYou have never been dead.");
+            }
         }
       }
       //END DEATH------------------------------------------------------------------------------------------------------
@@ -130,25 +217,19 @@ public class Commands implements org.bukkit.command.CommandExecutor {
       //START SUICIDE------------------------------------------------------------------------------------------------------
       if (command.getName().equalsIgnoreCase("suicide")) {
         player.setHealth(0);
-        Bukkit.broadcastMessage(player.getName() + " s'est suicidé...");
+        if (plugin.getConfig().getString("Language").equals("fr") == true)
+        {
+            Bukkit.broadcastMessage(player.getName() + " s'est suicidé...");
+        }
+        else {
+            Bukkit.broadcastMessage(player.getName() + " committed suicide");
+        }
       }
       //END SUICIDE------------------------------------------------------------------------------------------------------------
-
-      //START BETTERSURVIVAL
-      if (command.getName().equalsIgnoreCase("bettersurvival")) {
-        // say commands and description who are in plugin.ylm
-        player.sendMessage("Plugin made by MonsieurBoiBoi");
-        player.sendMessage("-----Commands-----");
-        player.sendMessage("/rain Description: To skip the rain with a vote !");
-        player.sendMessage("/night Description: To skip the night with a vote !");
-        player.sendMessage("/death Description: To see your death location");
-        player.sendMessage("/suicide Description: To kill yourself");
-        player.sendMessage("/settings Description : Change some settings directly in game, see config.ylm for more");
-        player.sendMessage("------------------");
-
-      }
-      //END BETTERSURVIVAL
+    
     }
     return true;
-  }
+
 }
+}
+

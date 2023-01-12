@@ -17,21 +17,41 @@ import org.bukkit.inventory.ItemStack;
 public class EventDeath implements org.bukkit.event.Listener {
 
   public static Map<UUID, Location> lastPositions = new HashMap<UUID, Location>();
+  private final Plugin plugin;
+  public EventDeath(Plugin plugin) {
+    this.plugin = plugin;
+}
 
-  @EventHandler
+@EventHandler
   public void onPlayerDeath(org.bukkit.event.entity.PlayerDeathEvent event) {
     if (event.getEntity() instanceof org.bukkit.entity.Player) {
       org.bukkit.entity.Player player = (org.bukkit.entity.Player) event.getEntity();
       lastPositions.put(player.getUniqueId(), player.getLocation());
-      player.sendMessage(
-        "§c§lVous êtes mort en §r§c" +
-        player.getLocation().getBlockX() +
-        " " +
-        player.getLocation().getBlockY() +
-        " " +
-        player.getLocation().getBlockZ() +
-        " §r§c§l. Pour voir votre dernière mort, faites /death"
-      );
+      if (plugin.getConfig().getString("Language").equals("fr") == true)
+      {
+        player.sendMessage(
+        "§c§lVous êtes mort en §r§c X:" +
+          player.getLocation().getBlockX() +
+          " Y:" +
+          player.getLocation().getBlockY() +
+          " Z:" +
+          player.getLocation().getBlockZ() +
+          " §r§c§l. Pour voir votre dernière mort, faites /death"
+        );
+      }
+      else
+      {
+        player.sendMessage(
+        "§c§lYou died at §r§c X:" +
+          player.getLocation().getBlockX() +
+          " Y:" +
+          player.getLocation().getBlockY() +
+          " Z:" +
+          player.getLocation().getBlockZ() +
+          " §r§c§l. To see your last death, do /death"
+        );
+      }
+
       if (player.getInventory().isEmpty() == false) {
         List<ItemStack> drops = event.getDrops();
 

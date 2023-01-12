@@ -12,6 +12,7 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
 
+
 public class Event implements org.bukkit.event.Listener{
     private final Plugin plugin;
     
@@ -30,7 +31,14 @@ public class Event implements org.bukkit.event.Listener{
     @EventHandler
     public void onWeatherChange(org.bukkit.event.weather.WeatherChangeEvent event) {
         if (event.toWeatherState()) {
-            org.bukkit.Bukkit.broadcastMessage("§b§lIl pleut, faite /rain pour arrêter la pluie.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true)
+            {
+                org.bukkit.Bukkit.broadcastMessage("§bIl pleut, faite /rain pour arrêter la pluie.");
+            }
+            else 
+            {
+                org.bukkit.Bukkit.broadcastMessage("§bIt's raining, do /rain to stop the rain.");
+            }
         }
     }
     //END PLUIE------------------------------------------------------------------------------------------------------
@@ -72,7 +80,14 @@ public class Event implements org.bukkit.event.Listener{
         org.bukkit.entity.Player player = event.getPlayer();
         if (plugin.getConfig().getBoolean("NoGamemode") == true && event.getNewGameMode() == org.bukkit.GameMode.CREATIVE || event.getNewGameMode() == org.bukkit.GameMode.SPECTATOR) {
             event.setCancelled(true);
-            player.sendMessage("[Bettersurvival] §cVous ne pouvez pas changer de gamemode.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true)
+            {
+                player.sendMessage("[Bettersurvival] §cVous ne pouvez pas changer de gamemode.");
+            }
+            else
+            {
+                player.sendMessage("[Bettersurvival] §cYou can't change your gamemode.");
+            }
         }
     }
     //END DISABLE GAMEMODE CREATIVE AND SPECTATOR------------------------------------------------------------------------------------------------------
@@ -84,7 +99,15 @@ public class Event implements org.bukkit.event.Listener{
         String command = event.getMessage().toLowerCase();
         if (command.startsWith("/version") || command.startsWith("/plugins") || command.startsWith("/bukkit:pl") || command.startsWith("/bukkit:plugins") || command.startsWith("/bukkit:version") || command.startsWith("/bukkit:about")|| command.startsWith("/me") || command.startsWith("/trigger") || command.startsWith("/minecraft:me") || command.startsWith("/minecraft:trigger") || command.startsWith("/give") || command.startsWith("/minecraft:give") || command.startsWith("/effect") || command.startsWith("/minecraft:effect")) {
             event.setCancelled(true);
-            player.sendMessage("[Bettersurvival] §cVous ne pouvez pas utiliser cette commande.");
+            if (plugin.getConfig().getString("Language").equals("fr") == true)
+            {
+                player.sendMessage("[Bettersurvival] §cVous ne pouvez pas utiliser cette commande.");
+            }
+            else
+            {
+                player.sendMessage("[Bettersurvival] §cYou can't use this command.");
+            }
+            
         }
     }
     //END DISABLE COMMANDS------------------------------------------------------------------------------------------------------
@@ -107,14 +130,36 @@ public class Event implements org.bukkit.event.Listener{
                     player.sendMessage("§7[§f" + player.getName() + "§7 -> §f" + target.getName() + "§7] §f" + message);
                     target.sendMessage("§7[§f" + player.getName() + "§7 -> §f" + target.getName() + "§7] §f" + message);
                     target.playSound(target.getLocation(), org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Vous avez reçu un message de " + target.getName()));
+                    if (plugin.getConfig().getString("Language").equals("fr") == true)
+                    if (plugin.getConfig().getString("Language").equals("fr") == true)
+                    {
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Vous avez reçu un message de " + target.getName()));
+                    }
+                    else
+                    {
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("You received a message from " + target.getName()));
+                    }
 
 
                 } else {
-                    player.sendMessage("[Bettersurvival] §cLe joueur n'est pas connecté.");
+                    if (plugin.getConfig().getString("Language").equals("fr") == true)
+                    {
+                        player.sendMessage("[Bettersurvival] §cLe joueur n'est pas connecté.");
+                    }
+                    else
+                    {
+                        player.sendMessage("[Bettersurvival] §cThe player is not connected.");
+                    }
                 }
             } else {
-                player.sendMessage("[Bettersurvival] §cUtilisation: /tell <joueur> <message>");
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {
+                    player.sendMessage("[Bettersurvival] §cUtilisation: /msg <joueur> <message>");
+                }
+                else
+                {
+                    player.sendMessage("[Bettersurvival] §cUsage: /msg <player> <message>");
+                }
             }
         }
     }
@@ -128,13 +173,27 @@ public class Event implements org.bukkit.event.Listener{
             org.bukkit.entity.EnderDragon enderdragon = (org.bukkit.entity.EnderDragon) entity;
             org.bukkit.entity.Player killer = enderdragon.getKiller();
             if (killer != null) {
-                org.bukkit.Bukkit.broadcastMessage("§1" + killer.getName() + "§f a tué l'§5EnderDragon§f !");
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§4" + killer.getName() + "§f a tué l'§5EnderDragon§f !");
+                }
+                else
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§4" + killer.getName() + "§f killed the §5EnderDragon§f !");
+                }
                 // play sound for all players
                 for (org.bukkit.entity.Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
                     player.playSound(player.getLocation(), org.bukkit.Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
                 }
             } else {
-                org.bukkit.Bukkit.broadcastMessage("§fL'§5EnderDragon§f a été tué !");
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§fL'§5EnderDragon§f a été tué !");
+                }
+                else
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§fThe §5EnderDragon§f was killed !");
+                }
             }
         }
     }
@@ -148,12 +207,26 @@ public class Event implements org.bukkit.event.Listener{
             org.bukkit.entity.Wither wither = (org.bukkit.entity.Wither) entity;
             org.bukkit.entity.Player killer = wither.getKiller();
             if (killer != null) {
-                org.bukkit.Bukkit.broadcastMessage("§1" + killer.getName() + "§f a tué le §0Wither§f !");
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§4" + killer.getName() + "§f a tué le §0Wither§f !");
+                }
+                else
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§4" + killer.getName() + "§f killed the §0Wither§f !");
+                }
                 for (org.bukkit.entity.Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
                     player.playSound(player.getLocation(), org.bukkit.Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
                 }
             } else {
-                org.bukkit.Bukkit.broadcastMessage("§fLe §0Wither§f a été tué !");
+                if (plugin.getConfig().getString("Language").equals("fr") == true)
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§fLe §0Wither§f a été tué !");
+                }
+                else
+                {
+                    org.bukkit.Bukkit.broadcastMessage("§fThe §0Wither§f was killed !");
+                }
             }
         }
     }
