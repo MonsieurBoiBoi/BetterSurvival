@@ -19,3 +19,5 @@ JoinMessage: "§a a rejoint la partie."
 LeftMessage: "§c a quitté la partie."
 
 NoGamemode: true # If true, the player will not be able to change his gamemode so put false if you want to allow the player to change his gamemode (default: true)
+PVP:
+  CheckNoStuff: true

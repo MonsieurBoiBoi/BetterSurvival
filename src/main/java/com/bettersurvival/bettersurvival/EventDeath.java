@@ -72,7 +72,6 @@ public class EventDeath implements org.bukkit.event.Listener {
           } else {
             inv2.addItem(item);
           }
-
           counter++;
         }
 
