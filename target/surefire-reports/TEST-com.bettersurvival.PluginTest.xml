@@ -11,6 +11,7 @@
     <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="user.timezone" value="Europe/Paris"/>
     <property name="os.name" value="Windows 11"/>
+    <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
@@ -34,11 +35,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-<<<<<<< Updated upstream
-    <property name="surefire.real.class.path" value="C:\Users\Florian\AppData\Local\Temp\surefire7804712833652732142\surefirebooter10624287255066730569.jar"/>
-=======
-    <property name="surefire.real.class.path" value="C:\Users\Florian\AppData\Local\Temp\surefire16673335008268214035\surefirebooter7322926695721723464.jar"/>
->>>>>>> Stashed changes
+    <property name="surefire.real.class.path" value="C:\Users\Florian\AppData\Local\Temp\surefire5579982409979478603\surefirebooter18387212443059045390.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.5+8"/>
@@ -58,6 +55,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Users\Florian\AppData\Local\Microsoft\WindowsApps;C:\Users\Florian\.dotnet\tools;C:\Users\Florian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Florian\AppData\Local\spicetify;C:\Users\Florian\AppData\Local\GitHubDesktop\bin;C:\Users\Florian\.dotnet\tools;C:\Users\Florian\AppData\Roaming\npm;C:\Users\Florian\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Oculus\Support\oculus-runtime;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Users\Florian\AppData\Local\Microsoft\WindowsApps;C:\Users\Florian\.dotnet\tools;C:\Users\Florian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Florian\AppData\Local\spicetify;C:\Users\Florian\AppData\Local\GitHubDesktop\bin;C:\Users\Florian\.dotnet\tools;C:\Users\Florian\AppData\Roaming\npm;C:\Users\Florian\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Eclipse Adoptium"/>
