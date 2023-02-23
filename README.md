@@ -12,7 +12,7 @@ Minecraft plugin to improve survival experience in multiplayer
 - [x] See Death coordinates
 - [x] Anti Cheat Op player (no gamemode and play with his friends)
 - [x] Custom /msg
-- [x] And other litle features
+- [x] And other little features
 
 ## Commands
 - /rain - Vote to skip the rain
